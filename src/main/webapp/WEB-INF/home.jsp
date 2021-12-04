@@ -7,8 +7,21 @@
 <title>Spring MVC Film Site</title>
 </head>
 <body>
-	<h1>Films R Us!</h1>
+	<h1>R&J Films Inc</h1>
 	
-	${TEST}
+	<form action="getfilmbyid.do" method="GET"> 
+	Search film by FilmId:
+	<input type="text" name="filmid" min="1"/>
+	</form>
+	
+	<form action="getfilmbykeyword.do" method="GET"> 
+	Search film by keyword or phrase/pattern:
+	<input type="text" name="filmid" min="1"/>
+	</form>
+	<br>
+	
+	<a href="addfilm">Add film</a>
+	
+	
 </body>
 </html>
