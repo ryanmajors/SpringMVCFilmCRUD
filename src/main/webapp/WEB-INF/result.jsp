@@ -30,5 +30,11 @@
       <p>No state found</p>
     </c:otherwise>
   </c:choose>
+  
+  <form action="home.do">
+  
+  <button type="submit">HOME PAGE</button>
+  </form>
+  
 </body>
 </html>
