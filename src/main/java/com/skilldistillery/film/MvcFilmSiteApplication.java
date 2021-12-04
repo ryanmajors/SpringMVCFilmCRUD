@@ -8,6 +8,8 @@ public class MvcFilmSiteApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MvcFilmSiteApplication.class, args);
+		
+		
 	}
 
 }
