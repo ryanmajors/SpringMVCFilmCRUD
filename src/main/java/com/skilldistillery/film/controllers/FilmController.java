@@ -24,6 +24,12 @@ public class FilmController {
 		return "home";
 	}
 	
+	@RequestMapping({"addfilm"})
+	public String addFilm(Model model) {
+		model.addAttribute("TEST", "Hello, Spring MVC!");
+		return "addfilm";
+	}
+	
 	@RequestMapping(path="getfilmbyid.do", params="filmid", method=RequestMethod.GET)
 	public ModelAndView getFilmById(int filmid) {
 		ModelAndView mv = new ModelAndView();
@@ -38,6 +44,29 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		List<Film> films = filmDAO.findFilmByFilmWordSearch(filmphrase);
 		mv.addObject("films", films);
+		mv.setViewName("result");
+		return mv;
+	}
+	
+	@RequestMapping(path="addnewfilm.do", method=RequestMethod.GET)
+	public ModelAndView addNewFilmToDB(String title, String description, int releaseyear, int languageid, int rentalduration, String rentalrate, int length, String replacementcost, String rating ) {
+		System.out.println("made it into the add film method");
+		ModelAndView mv = new ModelAndView();
+		Film film = new Film();
+		film.setTitle(title);
+		film.setDescription(description);
+		film.setReleaseYear(releaseyear);
+		film.setLanguageId(languageid);
+		film.setRentalDuration(rentalduration);
+		film.setRentalRate(Double.parseDouble(rentalrate));
+		film.setLength(length);
+		film.setReplacementCost(Double.parseDouble(replacementcost));
+		film.setRating(rating);
+//		film.setFeatures(features);
+
+		System.out.println("Film controller line 66;");
+		film = filmDAO.addNewFilm(film);
+		mv.addObject("film", film);
 		mv.setViewName("result");
 		return mv;
 	}

@@ -22,7 +22,6 @@
         <li>${film.length}</li>
         <li>${film.replacementCost}</li>
         <li>${film.rating}</li>
-        <li>${film.features}</li>
         <li>${film.actors}</li>
       </ul>
     </c:when> 
@@ -40,7 +39,6 @@
         <li>${film.length}</li>
         <li>${film.replacementCost}</li>
         <li>${film.rating}</li>
-        <li>${film.features}</li>
         <li>${film.actors}</li>
       </ul>
       </c:forEach>

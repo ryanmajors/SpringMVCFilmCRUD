@@ -12,7 +12,7 @@ public class Film {
 	
 	private Integer releaseYear;
 	
-	private String languageId;
+	private Integer languageId;
 
 	private Integer rentalDuration;
 	
@@ -24,16 +24,48 @@ public class Film {
 	
 	private String rating;
 	
-	private String features;
+	private String specialFeatures;
 	
+	private String languageName;
+	
+	public String getSpecialFeatures() {
+		return specialFeatures;
+	}
+
+	public void setSpecialFeatures(String specialFeatures) {
+		this.specialFeatures = specialFeatures;
+	}
+
 	private List<Actor> actors;
 	
 
 	public Film() {}
 
-	public Film(int filmId, String title2, String desc, short releaseYear2, String lang, int rentDur, double rate,
-			int length2, double repCost, String rating2, String features2) {
-		
+
+	public Film(int id, String title, String description, Integer releaseYear, Integer languageId,
+			Integer rentalDuration, double rentalRate, Integer length, double replacementCost, String rating,
+			String specialFeatures, List<Actor> actors) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.languageId = languageId;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+		this.actors = actors;
+	}
+
+	public String getLanguageName() {
+		return languageName;
+	}
+
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
 	}
 
 	public int getId() {
@@ -68,11 +100,11 @@ public class Film {
 		this.releaseYear = releaseYear;
 	}
 
-	public String getLanguageId() {
+	public Integer getLanguageId() {
 		return languageId;
 	}
 
-	public void setLanguageId(String languageId) {
+	public void setLanguageId(Integer languageId) {
 		this.languageId = languageId;
 	}
 
@@ -116,13 +148,6 @@ public class Film {
 		this.rating = rating;
 	}
 
-	public String getFeatures() {
-		return features;
-	}
-
-	public void setFeatures(String features) {
-		this.features = features;
-	}
 
 	public List<Actor> getActors() {
 		return actors;
@@ -134,9 +159,13 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film id: " + id + "\nTitle: " + title + "\nDescription: " + description + "\nRating: " + rating + "\nReleaseYear: " + releaseYear
-				+ "\nRentalRate: " + rentalRate + "\nLength: " + length + "\nReplacementCost: " + replacementCost;
+		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
+				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
+				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
+				+ ", specialFeatures=" + specialFeatures + ", actors=" + actors + "]";
 	}
+
+
 
 
 }
