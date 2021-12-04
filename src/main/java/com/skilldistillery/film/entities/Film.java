@@ -1,5 +1,6 @@
 package com.skilldistillery.film.entities;
 
+import java.util.List;
 
 public class Film {
 	
@@ -11,16 +12,71 @@ public class Film {
 	
 	private Integer releaseYear;
 	
+	private String languageId;
+
+	private Integer rentalDuration;
+	
 	private double rentalRate;
 	
 	private Integer length;
 	
 	private double replacementCost;
 	
-	private Rating rating;
+	private String rating;
 	
-	Film() {}
+	private String features;
+	
+	private List<Actor> actors;
+	
+	public String getFeatures() {
+		return features;
+	}
 
+	public void setFeatures(String features) {
+		this.features = features;
+	}
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+
+	
+
+	public Film() {}
+
+	public Film(int filmId, String title2, String desc, short releaseYear2, String lang, int rentDur, double rate,
+			int length2, double repCost, String rating2, String features2) {
+		
+	}
+
+	public Integer getRentalDuration() {
+		return rentalDuration;
+	}
+
+	public void setRentalDuration(Integer rentalDuration) {
+		this.rentalDuration = rentalDuration;
+	}
+
+	public String getLanguageId() {
+		return languageId;
+	}
+
+	public void setLanguageId(String languageId) {
+		this.languageId = languageId;
+	}
+
+	public void setReleaseYear(Integer releaseYear) {
+		this.releaseYear = releaseYear;
+	}
+
+	public void setLength(Integer length) {
+		this.length = length;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -77,11 +133,11 @@ public class Film {
 		this.replacementCost = replacementCost;
 	}
 
-	public Rating getRating() {
+	public String getRating() {
 		return rating;
 	}
 
-	public void setRating(Rating rating) {
+	public void setRating(String rating) {
 		this.rating = rating;
 	}
 
@@ -90,6 +146,6 @@ public class Film {
 		return "Film id: " + id + "\nTitle: " + title + "\nDescription: " + description + "\nRating: " + rating + "\nReleaseYear: " + releaseYear
 				+ "\nRentalRate: " + rentalRate + "\nLength: " + length + "\nReplacementCost: " + replacementCost;
 	}
-	
-	
+
+
 }
