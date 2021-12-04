@@ -25,9 +25,29 @@
         <li>${film.features}</li>
         <li>${film.actors}</li>
       </ul>
-    </c:when>
+    </c:when> 
+    
+      <c:when test="${! empty films}">
+      <c:forEach var="film" items="${films}">
+      <ul>
+        <li>${film.id}</li>
+        <li>${film.title}</li>
+        <li>${film.description}</li>
+        <li>${film.releaseYear}</li>
+        <li>${film.languageId}</li>
+        <li>${film.rentalDuration}</li>
+        <li>${film.rentalRate}</li>
+        <li>${film.length}</li>
+        <li>${film.replacementCost}</li>
+        <li>${film.rating}</li>
+        <li>${film.features}</li>
+        <li>${film.actors}</li>
+      </ul>
+      </c:forEach>
+    </c:when> 
+    
     <c:otherwise>
-      <p>No state found</p>
+      <p>No film found</p>
     </c:otherwise>
   </c:choose>
   

@@ -175,6 +175,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	@Override
 	public List<Film> findFilmByFilmWordSearch(String searchWord) {
 		List<Film> films = new ArrayList<>();
+		Film film = null;
 
 		try {
 			String searchQuery = "%" + searchWord + "%";
@@ -188,22 +189,22 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			prestmt.setNString(2, searchQuery);
 			ResultSet rs = prestmt.executeQuery();
 			while (rs.next()) {
-				int filmId = rs.getInt("film.id");
-				String title = rs.getString("film.title");
-				String desc = rs.getString("film.description");
-				short releaseYear = rs.getShort("film.release_year");
-				String lang = rs.getString("language.name");
-				int rentDur = rs.getInt("film.rental_duration");
-				double rate = rs.getDouble("film.rental_rate");
-				int length = rs.getInt("film.length");
-				double repCost = rs.getDouble("film.replacement_cost");
-				String rating = rs.getString("film.rating");
-				String features = rs.getString("film.special_features");
-
-				Film film = new Film(filmId, title, desc, releaseYear, lang, rentDur, rate, length, repCost, rating,
-						features);
-				film.setActors(findActorsByFilmId(filmId));
+				film = new Film();
+				
+				film.setId(rs.getInt("film.id"));
+				film.setTitle(rs.getString("film.title"));
+				film.setDescription(rs.getString("film.description"));
+				film.setReleaseYear(rs.getInt("film.release_year"));
+				film.setLanguageId(rs.getString("language.name"));
+				film.setRentalDuration(rs.getInt("film.rental_duration"));
+				film.setRentalRate(rs.getDouble("film.rental_rate"));
+				film.setLength(rs.getInt("film.length"));
+				film.setReplacementCost(rs.getDouble("film.replacement_cost"));
+				film.setRating(rs.getString("film.rating"));
+				film.setFeatures(rs.getString("film.special_features"));
+				film.setActors(findActorsByFilmId(film.getId()));
 				films.add(film);
+				
 			}
 			rs.close();
 			prestmt.close();

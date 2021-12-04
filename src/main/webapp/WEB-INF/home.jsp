@@ -16,7 +16,7 @@
 	
 	<form action="getfilmbykeyword.do" method="GET"> 
 	Search film by keyword or phrase/pattern:
-	<input type="text" name="filmid" min="1"/>
+	<input type="text" name="filmphrase" min="1"/>
 	</form>
 	<br>
 	
