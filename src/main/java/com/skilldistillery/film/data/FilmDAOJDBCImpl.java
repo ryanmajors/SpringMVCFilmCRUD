@@ -50,8 +50,8 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setId(actorResult.getInt("film.id"));
 				film.setTitle(actorResult.getString("film.title"));
 				film.setDescription(actorResult.getString("film.description"));
-				film.setReleaseYear(actorResult.getShort("film.release_year"));
-				film.setLanguageId(actorResult.getString("film.language_id"));
+				film.setReleaseYear(actorResult.getInt("film.release_year"));
+				film.setLanguageId(actorResult.getString("language.name"));
 				film.setRentalDuration(actorResult.getInt("film.rental_duration"));
 				film.setRentalRate(actorResult.getDouble("film.rental_rate"));
 				film.setLength(actorResult.getInt("film.length"));
@@ -153,7 +153,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setId(rs.getInt("film.id"));
 				film.setTitle(rs.getString("film.title"));
 				film.setDescription(rs.getString("film.description"));
-				film.setReleaseYear(rs.getShort("film.release_year"));
+				film.setReleaseYear(rs.getInt("film.release_year"));
 				film.setLanguageId(rs.getString("language.name"));
 				film.setRentalDuration(rs.getInt("film.rental_duration"));
 				film.setRentalRate(rs.getDouble("film.rental_rate"));

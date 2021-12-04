@@ -28,23 +28,6 @@ public class Film {
 	
 	private List<Actor> actors;
 	
-	public String getFeatures() {
-		return features;
-	}
-
-	public void setFeatures(String features) {
-		this.features = features;
-	}
-
-	public List<Actor> getActors() {
-		return actors;
-	}
-
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
-	}
-
-	
 
 	public Film() {}
 
@@ -53,30 +36,6 @@ public class Film {
 		
 	}
 
-	public Integer getRentalDuration() {
-		return rentalDuration;
-	}
-
-	public void setRentalDuration(Integer rentalDuration) {
-		this.rentalDuration = rentalDuration;
-	}
-
-	public String getLanguageId() {
-		return languageId;
-	}
-
-	public void setLanguageId(String languageId) {
-		this.languageId = languageId;
-	}
-
-	public void setReleaseYear(Integer releaseYear) {
-		this.releaseYear = releaseYear;
-	}
-
-	public void setLength(Integer length) {
-		this.length = length;
-	}
-	
 	public int getId() {
 		return id;
 	}
@@ -101,12 +60,28 @@ public class Film {
 		this.description = description;
 	}
 
-	public int getReleaseYear() {
+	public Integer getReleaseYear() {
 		return releaseYear;
 	}
 
-	public void setReleaseYear(int releaseYear) {
+	public void setReleaseYear(Integer releaseYear) {
 		this.releaseYear = releaseYear;
+	}
+
+	public String getLanguageId() {
+		return languageId;
+	}
+
+	public void setLanguageId(String languageId) {
+		this.languageId = languageId;
+	}
+
+	public Integer getRentalDuration() {
+		return rentalDuration;
+	}
+
+	public void setRentalDuration(Integer rentalDuration) {
+		this.rentalDuration = rentalDuration;
 	}
 
 	public double getRentalRate() {
@@ -117,11 +92,11 @@ public class Film {
 		this.rentalRate = rentalRate;
 	}
 
-	public int getLength() {
+	public Integer getLength() {
 		return length;
 	}
 
-	public void setLength(int length) {
+	public void setLength(Integer length) {
 		this.length = length;
 	}
 
@@ -139,6 +114,22 @@ public class Film {
 
 	public void setRating(String rating) {
 		this.rating = rating;
+	}
+
+	public String getFeatures() {
+		return features;
+	}
+
+	public void setFeatures(String features) {
+		this.features = features;
+	}
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
 	}
 
 	@Override
