@@ -264,7 +264,6 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	@Override
 	public Film addNewFilm(Film newFilm) {
 		
-		System.out.println("made it into DAY OH add Film");
 		String sql = " INSERT INTO film (title, description, release_year, language_id , rental_duration, rental_rate, length, replacement_cost, rating ) VALUES(?,?,?,?,?,?,?,?,?)";
 
 		Connection conn = null;

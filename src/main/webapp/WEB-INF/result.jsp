@@ -49,6 +49,15 @@
     </c:otherwise>
   </c:choose>
   
+  <form action="delete.do">
+  <button type="submit">Delete Film</button>
+  </form>
+  
+  
+  <form action="update.do">
+  <button type="submit">Edit Film</button>
+  </form>
+  
   <form action="home.do">
   
   <button type="submit">HOME PAGE</button>

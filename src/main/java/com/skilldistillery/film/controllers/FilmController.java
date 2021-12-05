@@ -50,7 +50,6 @@ public class FilmController {
 	
 	@RequestMapping(path="addnewfilm.do", method=RequestMethod.GET)
 	public ModelAndView addNewFilmToDB(String title, String description, int releaseyear, int languageid, int rentalduration, String rentalrate, int length, String replacementcost, String rating ) {
-		System.out.println("made it into the add film method");
 		ModelAndView mv = new ModelAndView();
 		Film film = new Film();
 		film.setTitle(title);
@@ -64,7 +63,6 @@ public class FilmController {
 		film.setRating(rating);
 //		film.setFeatures(features);
 
-		System.out.println("Film controller line 66;");
 		film = filmDAO.addNewFilm(film);
 		mv.addObject("film", film);
 		mv.setViewName("result");
