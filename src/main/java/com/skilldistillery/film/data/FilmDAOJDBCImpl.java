@@ -58,7 +58,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setLength(actorResult.getInt("film.length"));
 				film.setReplacementCost(actorResult.getDouble("film.replacement_cost"));
 				film.setRating(actorResult.getString("film.rating"));
-				film.setCategories(findCategoryByFilmId(filmId));
+				film.setCategory(findCategoryById(filmId));
 //				film.setFeatures(actorResult.getString("film.special_features"));
 				film.setActors(findActorsByFilmId(filmId));
 			}
@@ -205,7 +205,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setLength(rs.getInt("film.length"));
 				film.setReplacementCost(rs.getDouble("film.replacement_cost"));
 				film.setRating(rs.getString("film.rating"));
-				film.setCategories(findCategoryByFilmId(film.getId()));
+				film.setCategory(findCategoryById(film.getId()));
 //				film.setFeatures(rs.getString("film.special_features"));
 				film.setActors(findActorsByFilmId(film.getId()));
 				films.add(film);
@@ -382,8 +382,8 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 	@Override
 	public Film updateFilm(Film film) {
-		String sql = " UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=? WHERE id = ?";
-
+		String sql = " UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=?,  WHERE id = ?";
+		
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
@@ -412,6 +412,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				conn.close();
 				return film;
 			}
+			//String sql2 = Update   //Working on this spot do no touch
 
 			// If we made it this far, no exception occurred.
 			conn.commit(); // Commit the transaction
@@ -440,7 +441,6 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 	public List<Category> findCategoryByFilmId(int filmId) {
 		List<Category> categories = new ArrayList<>();
-		System.err.println("We made it into category search!");
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			String sql = "SELECT category.id, category.name FROM category JOIN film_category ON category.id = film_category.category_id JOIN film ON film.id = film_category.film_id WHERE film.id = ?";
@@ -450,7 +450,6 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			while (rs.next()) {
 
 				Category category = new Category();
-				System.err.println("inside the loop");
 				// Create the object
 				// Here is our mapping of query columns to our object fields:
 				category.setId(rs.getInt("category.id"));
@@ -465,8 +464,29 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.err.println("we made are leaving category method!");
 		return categories;
 	}
-
+	public Category findCategoryById(int categoryId) {
+			Category category = new Category();
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			String sql = "SELECT category.id, category.name FROM category WHERE id = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, categoryId);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				// Create the object
+				// Here is our mapping of query columns to our object fields:
+				category.setId(rs.getInt("category.id"));
+				category.setName(rs.getString("category.name"));
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return category;
+		
+	}
 }

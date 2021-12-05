@@ -28,7 +28,7 @@ public class Film {
 
 	private String languageName;
 
-	private List<Category> categories;
+	private Category category;
 
 	public String getSpecialFeatures() {
 		return specialFeatures;
@@ -61,12 +61,13 @@ public class Film {
 		this.actors = actors;
 	}
 
-	public List<Category> getCategories() {
-		return categories;
+
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public String getLanguageName() {
@@ -171,7 +172,9 @@ public class Film {
 				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
 				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
 				+ ", specialFeatures=" + specialFeatures + ", languageName=" + languageName + ", categories="
-				+ categories + ", actors=" + actors + "]";
+				+ category + ", actors=" + actors + "]";
 	}
+
+
 
 }
