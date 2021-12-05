@@ -208,6 +208,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setActors(findActorsByFilmId(film.getId()));
 				films.add(film);
 				
+				
 			}
 			rs.close();
 			prestmt.close();
