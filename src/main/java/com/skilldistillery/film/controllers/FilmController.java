@@ -68,5 +68,20 @@ public class FilmController {
 		mv.setViewName("result");
 		return mv;
 	}
+	
+	@RequestMapping(path="deletefilm.do")
+	public ModelAndView deleteFilmFromDB(int deletefilmid) {
+		Film film = filmDAO.findFilmById(deletefilmid);
+		System.err.println(film);
+		ModelAndView mv = new ModelAndView();
+		filmDAO.deleteFilm(film);
+		if(filmDAO.findFilmById(film.getId())==null) {
+			mv.setViewName("deleteconfirmation");
+			return mv;
+		}
+		mv.setViewName("home");
+		return mv;
+	}
+	
 
 }

@@ -20,11 +20,9 @@
 	</form>
 	<br>
 	
-	<form action="addfilm.do" method="POST">
-	Add film to the database:
-	<input type="button" name="addfilmbutton" value="Add Film">
+	<form action="addfilm" method="POST">
+	<button type="submit" name="addfilmbutton">Add Film</button>
 	</form>
-	<a href="addfilm">Add film</a>
 	
 </body>
 </html>

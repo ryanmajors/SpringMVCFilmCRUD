@@ -325,28 +325,28 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	}
 
 	@Override
-	public Film deleteFilm(Film dFilm) {
+	public Film deleteFilm(Film film) {
 
-		String sql = " DELETE FROM film WHERE id = ?";
+		String sql = "DELETE FROM film WHERE id = ?";
 
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
 			conn.setAutoCommit(false); // Start transaction
 			PreparedStatement st = conn.prepareStatement(sql);
-			st.setInt(1, dFilm.getId());
+			st.setInt(1, film.getId());
 
 			System.out.println(st);
 			int uc = st.executeUpdate();
 			if (uc == 1) {
 
-				System.out.println("Film title " + dFilm.getTitle() + " Deleted from list ");
+				System.out.println("Film title " + film.getTitle() + " Deleted from list ");
 			} else {
 				System.err.println("Error, error you or I may have done something wrong.");
 				conn.rollback();
-				dFilm = null;
+				film = null;
 				conn.close();
-				return dFilm;
+				return film;
 			}
 
 			// If we made it this far, no exception occurred.
@@ -371,7 +371,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return dFilm;
+		return film;
 	}
 
 	@Override

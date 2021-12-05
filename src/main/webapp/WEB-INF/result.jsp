@@ -49,8 +49,8 @@
     </c:otherwise>
   </c:choose>
   
-  <form action="delete.do">
-  <button type="submit">Delete Film</button>
+  <form action="deletefilm.do">
+  <button type="submit" name="deletefilmid" value="${film.id}">Delete Film</button>
   </form>
   
   
