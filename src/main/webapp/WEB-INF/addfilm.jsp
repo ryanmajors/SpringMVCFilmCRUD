@@ -11,23 +11,23 @@
 	<form action="addnewfilm.do" method="GET"> 
 	Fill out the form to edit the following film attributes:
 	<br>Title
-	<input type="text" class="data" name="title"/>
+	<input type="text" class="data" name="title" required="required"/>
 	<br>Description
-	<input type="text" class="data" name="description"/>
+	<input type="text" class="data" name="description" required="required"/>
 	<br>Release Year
-	<input type="number" class="data" name="releaseyear"/>
+	<input type="number" class="data" name="releaseyear"required="required"/>
 	<br>Language Id
-	<input type="text" class="data" name="languageid"/>
+	<input type="number" class="data" name="languageid" min="1" max="6" required="required"/>
 	<br>Rental Duration
-	<input type="number" class="data" name="rentalduration"/>
+	<input type="number" class="data" name="rentalduration" required="required"/>
 	<br>Rental Rate
-	<input type="text" class="data" name="rentalrate"/>
+	<input type="text" class="data" name="rentalrate" required="required"/>
 	<br>Length
-	<input type="number" class="data" name="length"/>
+	<input type="number" class="data" name="length" required="required"/>
 	<br>Replacement Cost
-	<input type="text" class="data" name="replacementcost"/>
+	<input type="text" class="data" name="replacementcost" required="required"/>
 	<br>Rating
-	<input type="text" class="data" name="rating"/>
+	<input type="text" class="data" name="rating" required="required"/>
 	<br>
 	<button type="submit" >Submit</button>
 	</form>

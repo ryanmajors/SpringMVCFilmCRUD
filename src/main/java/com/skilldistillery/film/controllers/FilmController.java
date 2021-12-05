@@ -65,15 +65,25 @@ public class FilmController {
 			int rentalduration, String rentalrate, int length, String replacementcost, String rating) {
 		ModelAndView mv = new ModelAndView();
 		Film film = new Film();
-		film.setTitle(title);
-		film.setDescription(description);
-		film.setReleaseYear(releaseyear);
-		film.setLanguageId(languageid);
-		film.setRentalDuration(rentalduration);
-		film.setRentalRate(Double.parseDouble(rentalrate));
-		film.setLength(length);
-		film.setReplacementCost(Double.parseDouble(replacementcost));
-		film.setRating(rating);
+		try {
+			film.setTitle(title);
+			film.setDescription(description);
+			film.setReleaseYear(releaseyear);
+			film.setLanguageId(languageid);
+			film.setRentalDuration(rentalduration);
+			film.setRentalRate(Double.parseDouble(rentalrate));
+			film.setLength(length);
+			film.setReplacementCost(Double.parseDouble(replacementcost));
+			film.setRating(rating);
+		} catch (NumberFormatException e) {
+			System.err.println("Potential invalid fields. Try again");
+			mv.setViewName("editfilmerror");
+			return mv;
+		} catch (NullPointerException e) {
+			System.err.println("Potential invalid fields. Try again");
+			mv.setViewName("editfilmerror");
+			return mv;
+		}
 //		film.setFeatures(features);
 
 		film = filmDAO.addNewFilm(film);
