@@ -22,6 +22,7 @@
         <li>${film.length}</li>
         <li>${film.replacementCost}</li>
         <li>${film.rating}</li>
+        <li>${film.categories}</li>
         <li>${film.actors}</li>
       </ul>
       <form action="deletefilm.do">
@@ -47,6 +48,7 @@
         <li>${film.length}</li>
         <li>${film.replacementCost}</li>
         <li>${film.rating}</li>
+        <li>${film.categories}</li>
         <li>${film.actors}</li>
       </ul>
       <form action="deletefilm.do">

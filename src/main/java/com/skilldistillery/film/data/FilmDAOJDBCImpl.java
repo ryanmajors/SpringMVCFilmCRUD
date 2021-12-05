@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.film.entities.Actor;
+import com.skilldistillery.film.entities.Category;
 import com.skilldistillery.film.entities.Film;
 import com.skilldistillery.film.entities.Rating;
 
@@ -36,7 +37,8 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 		}
 		String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, language.name, film.rental_duration, "
 				+ "film.rental_rate, film.length, film.replacement_cost, film.rating  "
-				+ "FROM film " + "JOIN language ON film.language_id = language.id " + "WHERE film.id = ?;";
+				+ "FROM film " + "JOIN language ON film.language_id = language.id "
+				+ "WHERE film.id = ?;";
 		PreparedStatement preSt = null;
 
 		try {
@@ -58,6 +60,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setLength(actorResult.getInt("film.length"));
 				film.setReplacementCost(actorResult.getDouble("film.replacement_cost"));
 				film.setRating(actorResult.getString("film.rating"));
+				film.setCategories(findCategoryByFilmId(filmId));
 //				film.setFeatures(actorResult.getString("film.special_features"));
 				film.setActors(findActorsByFilmId(filmId));
 			}
@@ -117,7 +120,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			pstmt.setInt(1, filmId);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				if (rs.next()) {
+			
 					Actor actor = new Actor();
 					// Create the object
 					// Here is our mapping of query columns to our object fields:
@@ -125,7 +128,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 					actor.setFirstName(rs.getString("first_name"));
 					actor.setLastName(rs.getString("last_name"));
 					actors.add(actor);
-				}
+		
 			}
 			rs.close();
 			pstmt.close();
@@ -204,6 +207,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setLength(rs.getInt("film.length"));
 				film.setReplacementCost(rs.getDouble("film.replacement_cost"));
 				film.setRating(rs.getString("film.rating"));
+				film.setCategories(findCategoryByFilmId(film.getId()));
 //				film.setFeatures(rs.getString("film.special_features"));
 				film.setActors(findActorsByFilmId(film.getId()));
 				films.add(film);
@@ -235,7 +239,6 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			pstmt.setNString(2, searchQuery);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				if (rs.next()) {
 					Actor actor = new Actor();
 					// Create the object
 					// Here is our mapping of query columns to our object fields:
@@ -243,7 +246,6 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 					actor.setFirstName(rs.getString("first_name"));
 					actor.setLastName(rs.getString("last_name"));
 					actors.add(actor);
-				}
 			}
 			rs.close();
 			pstmt.close();
@@ -434,6 +436,37 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			e.printStackTrace();
 		}
 		return film;
+	}
+	
+	public List<Category> findCategoryByFilmId(int filmId) {
+		List<Category> categories = new ArrayList<>();
+System.err.println("We made it into category search!");
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			String sql = "SELECT category.id, category.name FROM category JOIN film_category ON category.id = film_category.category_id JOIN film ON film.id = film_category.film_id WHERE film.id = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, filmId);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				
+					Category category = new Category() ;
+					System.err.println("inside the loop");
+					// Create the object
+					// Here is our mapping of query columns to our object fields:
+					category.setId(rs.getInt("category.id"));
+					category.setName(rs.getString("category.name"));
+					System.err.println(category);
+					categories.add(category);
+				
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.err.println("we made are leaving category method!");
+		return categories;
 	}
 
 }
