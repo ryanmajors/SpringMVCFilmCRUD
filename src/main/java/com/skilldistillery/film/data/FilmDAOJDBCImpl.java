@@ -62,11 +62,12 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 //				film.setFeatures(actorResult.getString("film.special_features"));
 				film.setActors(findActorsByFilmId(filmId));
 			}
-
+			actorResult.close();
+			preSt.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return film;
 	}
 
@@ -303,6 +304,9 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 			// If we made it this far, no exception occurred.
 			conn.commit(); // Commit the transaction
+			st.close();
+			keys.close();
+			
 		} catch (SQLException e) {
 			// Something went wrong.
 			System.err.println("Error during inserts.");

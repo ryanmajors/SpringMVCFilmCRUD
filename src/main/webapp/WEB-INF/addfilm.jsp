@@ -29,6 +29,8 @@
 	<br>Rating
 	<input type="text" class="data" name="rating" required="required"/>
 	<br>
+	<input type=number class="data" name="category" min="1" max="16" required="required"/>
+	<br>
 	<button type="submit" >Submit</button>
 	</form>
 	<br>
