@@ -58,7 +58,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setLength(actorResult.getInt("film.length"));
 				film.setReplacementCost(actorResult.getDouble("film.replacement_cost"));
 				film.setRating(actorResult.getString("film.rating"));
-				film.setCategory(findCategoryById(filmId));
+				film.setCategory(findCategoryByFilmId(filmId));
 //				film.setFeatures(actorResult.getString("film.special_features"));
 				film.setActors(findActorsByFilmId(filmId));
 			}
