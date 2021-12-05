@@ -18,7 +18,6 @@ import com.skilldistillery.film.entities.Rating;
 
 @Service
 public class FilmDAOJDBCImpl implements FilmDAO {
-	
 
 	private static final String url = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
 	private static final String user = "student";
@@ -36,9 +35,8 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			e.printStackTrace();
 		}
 		String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, language.name, film.rental_duration, "
-				+ "film.rental_rate, film.length, film.replacement_cost, film.rating  "
-				+ "FROM film " + "JOIN language ON film.language_id = language.id "
-				+ "WHERE film.id = ?;";
+				+ "film.rental_rate, film.length, film.replacement_cost, film.rating  " + "FROM film "
+				+ "JOIN language ON film.language_id = language.id " + "WHERE film.id = ?;";
 		PreparedStatement preSt = null;
 
 		try {
@@ -120,15 +118,15 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			pstmt.setInt(1, filmId);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-			
-					Actor actor = new Actor();
-					// Create the object
-					// Here is our mapping of query columns to our object fields:
-					actor.setId(rs.getInt("id"));
-					actor.setFirstName(rs.getString("first_name"));
-					actor.setLastName(rs.getString("last_name"));
-					actors.add(actor);
-		
+
+				Actor actor = new Actor();
+				// Create the object
+				// Here is our mapping of query columns to our object fields:
+				actor.setId(rs.getInt("id"));
+				actor.setFirstName(rs.getString("first_name"));
+				actor.setLastName(rs.getString("last_name"));
+				actors.add(actor);
+
 			}
 			rs.close();
 			pstmt.close();
@@ -141,7 +139,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 	public List<Film> findFilmsByActorId(int actorId) {
 		List<Film> films = new ArrayList<>();
-		Film film= null;
+		Film film = null;
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, language.name, film.rental_duration, ";
@@ -153,7 +151,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				film = new Film();
-				
+
 				film.setId(rs.getInt("film.id"));
 				film.setTitle(rs.getString("film.title"));
 				film.setDescription(rs.getString("film.description"));
@@ -186,16 +184,15 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			String searchQuery = "%" + searchWord + "%";
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, language.name, film.rental_duration, "
-					+ " film.rental_rate, film.length, film.replacement_cost, film.rating "
-					+ " FROM film " + "JOIN language ON film.language_id = language.id"
-					+ " WHERE description LIKE ? OR title LIKE  ? ";
+					+ " film.rental_rate, film.length, film.replacement_cost, film.rating " + " FROM film "
+					+ "JOIN language ON film.language_id = language.id" + " WHERE description LIKE ? OR title LIKE  ? ";
 			PreparedStatement prestmt = conn.prepareStatement(sql);
 			prestmt.setNString(1, searchQuery);
 			prestmt.setNString(2, searchQuery);
 			ResultSet rs = prestmt.executeQuery();
 			while (rs.next()) {
 				film = new Film();
-				
+
 				film.setId(rs.getInt("film.id"));
 				film.setTitle(rs.getString("film.title"));
 				film.setDescription(rs.getString("film.description"));
@@ -211,8 +208,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 //				film.setFeatures(rs.getString("film.special_features"));
 				film.setActors(findActorsByFilmId(film.getId()));
 				films.add(film);
-				
-				
+
 			}
 			rs.close();
 			prestmt.close();
@@ -239,13 +235,13 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			pstmt.setNString(2, searchQuery);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-					Actor actor = new Actor();
-					// Create the object
-					// Here is our mapping of query columns to our object fields:
-					actor.setId(rs.getInt("id"));
-					actor.setFirstName(rs.getString("first_name"));
-					actor.setLastName(rs.getString("last_name"));
-					actors.add(actor);
+				Actor actor = new Actor();
+				// Create the object
+				// Here is our mapping of query columns to our object fields:
+				actor.setId(rs.getInt("id"));
+				actor.setFirstName(rs.getString("first_name"));
+				actor.setLastName(rs.getString("last_name"));
+				actors.add(actor);
 			}
 			rs.close();
 			pstmt.close();
@@ -269,7 +265,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 	@Override
 	public Film addNewFilm(Film newFilm) {
-		
+
 		String sql = " INSERT INTO film (title, description, release_year, language_id , rental_duration, rental_rate, length, replacement_cost, rating ) VALUES(?,?,?,?,?,?,?,?,?)";
 
 		Connection conn = null;
@@ -383,7 +379,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	@Override
 	public Film updateFilm(Film film) {
 		String sql = " UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=? WHERE id = ?";
-		
+
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
@@ -437,10 +433,10 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 		}
 		return film;
 	}
-	
+
 	public List<Category> findCategoryByFilmId(int filmId) {
 		List<Category> categories = new ArrayList<>();
-System.err.println("We made it into category search!");
+		System.err.println("We made it into category search!");
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			String sql = "SELECT category.id, category.name FROM category JOIN film_category ON category.id = film_category.category_id JOIN film ON film.id = film_category.film_id WHERE film.id = ?";
@@ -448,16 +444,16 @@ System.err.println("We made it into category search!");
 			pstmt.setInt(1, filmId);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				
-					Category category = new Category() ;
-					System.err.println("inside the loop");
-					// Create the object
-					// Here is our mapping of query columns to our object fields:
-					category.setId(rs.getInt("category.id"));
-					category.setName(rs.getString("category.name"));
-					System.err.println(category);
-					categories.add(category);
-				
+
+				Category category = new Category();
+				System.err.println("inside the loop");
+				// Create the object
+				// Here is our mapping of query columns to our object fields:
+				category.setId(rs.getInt("category.id"));
+				category.setName(rs.getString("category.name"));
+				System.err.println(category);
+				categories.add(category);
+
 			}
 			rs.close();
 			pstmt.close();

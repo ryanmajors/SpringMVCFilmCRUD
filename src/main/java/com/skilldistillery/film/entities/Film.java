@@ -3,33 +3,33 @@ package com.skilldistillery.film.entities;
 import java.util.List;
 
 public class Film {
-	
+
 	private int id;
-	
+
 	private String title;
-	
+
 	private String description;
-	
+
 	private Integer releaseYear;
-	
+
 	private Integer languageId;
 
 	private Integer rentalDuration;
-	
+
 	private double rentalRate;
-	
+
 	private Integer length;
-	
+
 	private double replacementCost;
-	
+
 	private String rating;
-	
+
 	private String specialFeatures;
-	
+
 	private String languageName;
-	
+
 	private List<Category> categories;
-	
+
 	public String getSpecialFeatures() {
 		return specialFeatures;
 	}
@@ -39,10 +39,9 @@ public class Film {
 	}
 
 	private List<Actor> actors;
-	
 
-	public Film() {}
-
+	public Film() {
+	}
 
 	public Film(int id, String title, String description, Integer releaseYear, Integer languageId,
 			Integer rentalDuration, double rentalRate, Integer length, double replacementCost, String rating,
@@ -61,8 +60,6 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 		this.actors = actors;
 	}
-
-	
 
 	public List<Category> getCategories() {
 		return categories;
@@ -160,7 +157,6 @@ public class Film {
 		this.rating = rating;
 	}
 
-
 	public List<Actor> getActors() {
 		return actors;
 	}
@@ -177,8 +173,5 @@ public class Film {
 				+ ", specialFeatures=" + specialFeatures + ", languageName=" + languageName + ", categories="
 				+ categories + ", actors=" + actors + "]";
 	}
-
-
-
 
 }

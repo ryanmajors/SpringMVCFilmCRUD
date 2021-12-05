@@ -35,7 +35,7 @@ public class FilmController {
 		model.addAttribute("TEST", "Hello, Spring MVC!");
 		return "editfilmerror";
 	}
-	
+
 	@RequestMapping("deletefilmerror")
 	public String deleteFilmError(Model model) {
 		model.addAttribute("TEST", "Hello, Spring MVC!");
