@@ -24,6 +24,14 @@
         <li>${film.rating}</li>
         <li>${film.actors}</li>
       </ul>
+      <form action="deletefilm.do">
+  <button type="submit" name="deletefilmid" value="${film.id}">Delete Film</button>
+  </form>
+  
+  
+  <form action="editfilm" method="POST">
+  <button type="submit" name="editfilmid" value="${film.id}">Edit Film</button>
+  </form>
     </c:when> 
     
       <c:when test="${! empty films}">
@@ -42,6 +50,7 @@
         <li>${film.actors}</li>
       </ul>
       </c:forEach>
+      
     </c:when> 
     
     <c:otherwise>
@@ -49,14 +58,7 @@
     </c:otherwise>
   </c:choose>
   
-  <form action="deletefilm.do">
-  <button type="submit" name="deletefilmid" value="${film.id}">Delete Film</button>
-  </form>
   
-  
-  <form action="update.do">
-  <button type="submit">Edit Film</button>
-  </form>
   
   <form action="home.do">
   

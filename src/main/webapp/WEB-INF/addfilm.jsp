@@ -9,7 +9,7 @@
 <body>
 
 	<form action="addnewfilm.do" method="GET"> 
-	Create Film by filling out all fields:
+	Fill out the form to edit the following film attributes:
 	<br>Title
 	<input type="text" class="data" name="title"/>
 	<br>Description

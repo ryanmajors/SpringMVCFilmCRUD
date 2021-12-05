@@ -19,7 +19,7 @@ public interface FilmDAO {
 
 	Film deleteFilm(Film dFilm);
 
-	Film updateFilm(Film uFilm, String title);
+	Film updateFilm(Film uFilm);
 
 	Film findFilmById(int filmId);
 
