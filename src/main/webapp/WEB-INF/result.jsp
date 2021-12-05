@@ -16,7 +16,7 @@
         <li>${film.title}</li>
         <li>${film.description}</li>
         <li>${film.releaseYear}</li>
-        <li>${film.languageId}</li>
+        <li>${film.languageName}</li>
         <li>${film.rentalDuration}</li>
         <li>${film.rentalRate}</li>
         <li>${film.length}</li>
@@ -33,7 +33,7 @@
         <li>${film.title}</li>
         <li>${film.description}</li>
         <li>${film.releaseYear}</li>
-        <li>${film.languageId}</li>
+        <li>${film.languageName}</li>
         <li>${film.rentalDuration}</li>
         <li>${film.rentalRate}</li>
         <li>${film.length}</li>
