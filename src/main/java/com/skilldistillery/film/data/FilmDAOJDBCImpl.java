@@ -205,7 +205,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setLength(rs.getInt("film.length"));
 				film.setReplacementCost(rs.getDouble("film.replacement_cost"));
 				film.setRating(rs.getString("film.rating"));
-				film.setCategory(findCategoryById(film.getId()));
+				film.setCategory(findCategoryByFilmId(film.getId()));
 //				film.setFeatures(rs.getString("film.special_features"));
 				film.setActors(findActorsByFilmId(film.getId()));
 				films.add(film);
@@ -412,7 +412,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				conn.close();
 				return film;
 			}
-			//String sql2 = Update   //Working on this spot do no touch
+			//String sql2 = "UPDATE    //Working on this spot do no touch
 
 			// If we made it this far, no exception occurred.
 			conn.commit(); // Commit the transaction
@@ -439,23 +439,26 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 		return film;
 	}
 
-	public List<Category> findCategoryByFilmId(int filmId) {
-		List<Category> categories = new ArrayList<>();
+	public Category findCategoryByFilmId(int filmId) {
+		Category category = new Category();
+		
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "SELECT category.id, category.name FROM category JOIN film_category ON category.id = film_category.category_id JOIN film ON film.id = film_category.film_id WHERE film.id = ?";
+			String sql = "SELECT category.id, category.name FROM category "
+					+ "JOIN film_category ON category.id = film_category.category_id "
+					+ "JOIN film ON film.id = film_category.film_id "
+					+ "WHERE film.id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, filmId);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 
-				Category category = new Category();
 				// Create the object
 				// Here is our mapping of query columns to our object fields:
 				category.setId(rs.getInt("category.id"));
 				category.setName(rs.getString("category.name"));
 				System.err.println(category);
-				categories.add(category);
+				
 
 			}
 			rs.close();
@@ -464,7 +467,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return categories;
+		return category;
 	}
 	public Category findCategoryById(int categoryId) {
 			Category category = new Category();

@@ -121,7 +121,7 @@ public class FilmController {
 
 	@RequestMapping("editfilm.do")
 	public ModelAndView submitEditedFilm(int id, String title, String description, int releaseyear, int languageid,
-			int rentalduration, String rentalrate, int length, String replacementcost, String rating) {
+			int rentalduration, String rentalrate, int length, String replacementcost, String rating, int category) {
 		ModelAndView mv = new ModelAndView();
 		Film film = new Film();
 		film.setId(id);
@@ -147,6 +147,7 @@ public class FilmController {
 			return mv;
 		}
 		film.setRating(rating);
+		film.setCategory(filmDAO.findCategoryById(category));
 
 		film = filmDAO.updateFilm(film);
 
