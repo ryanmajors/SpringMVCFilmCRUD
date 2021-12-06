@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/theme/style.css">
-<title>Insert title here</title>
+<title>R&J Edit Film</title>
 </head>
 <body>
 	<nav>
@@ -50,13 +50,5 @@
 	<input type="hidden" class="data" name="id" required="required" value="${film.id}"/>
 	<button type="submit" >Submit</button>
 	</form>
-	<br>
-	
-	
-	<form action="home.do">
-  
-  <button type="submit">HOME PAGE</button>
-  </form>
-
 </body>
 </html>

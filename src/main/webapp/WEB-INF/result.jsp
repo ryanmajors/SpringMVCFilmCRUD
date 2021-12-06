@@ -7,51 +7,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/resources/theme/style.css">
-<title>Film</title>
+<title>R&J Results</title>
 </head>
 <body>
 	<nav>
-		<ul class="nav-list">
-			<li class="nav-item"><a href="#"><img class="logo"
-					src="logo.jpg"></a></li>
-			<li class="nav-item"><a href="home.do">HOME</a></li>
-			<li class="nav-item"><a href="search">SEARCH</a></li>
-			<li class="nav-item">
-				<form action="addfilm" method="POST">
-					<button class="add-film-button" type="submit" name="addfilmbutton">ADD
-						FILM</button>
-				</form>
-			</li>
-	
-		</ul>
+	<ul class="nav-list">
+		<li class="nav-item"><a href="#"><img class="logo"
+				src="logo.jpg"></a></li>
+		<li class="nav-item"><a href="home.do">HOME</a></li>
+		<li class="nav-item"><a href="search">SEARCH</a></li>
+		<li class="nav-item">
+			<form action="addfilm" method="POST">
+				<button class="add-film-button" type="submit" name="addfilmbutton">ADD
+					FILM</button>
+			</form>
+		</li>
+
+	</ul>
 	</nav>
-	
 	<c:choose>
 		<c:when test="${! empty film}">
-			<ul>
-				<li>${film.id}</li>
-				<li>${film.title}</li>
-				<li>${film.description}</li>
-				<li>${film.releaseYear}</li>
-				<li>${film.languageName}</li>
-				<li>${film.rentalDuration}</li>
-				<li>${film.rentalRate}</li>
-				<li>${film.length}</li>
-				<li>${film.replacementCost}</li>
-				<li>${film.rating}</li>
-				<li>${film.category}</li>
-				<li>${film.actors}</li>
-			</ul>
-			<form action="deletefilm.do">
-				<button type="submit" name="deletefilmid" value="${film.id}">Delete
-					Film</button>
-			</form>
+				<ul>
+					<li>${film.id}</li>
+					<li>${film.title}</li>
+					<li>${film.description}</li>
+					<li>${film.releaseYear}</li>
+					<li>${film.languageName}</li>
+					<li>${film.rentalDuration}</li>
+					<li>${film.rentalRate}</li>
+					<li>${film.length}</li>
+					<li>${film.replacementCost}</li>
+					<li>${film.rating}</li>
+					<li>${film.category}</li>
+					<li>${film.actors}</li>
+				</ul>
+				<form action="deletefilm.do">
+					<button type="submit" name="deletefilmid" value="${film.id}">Delete
+						Film</button>
+				</form>
 
 
-			<form action="editfilm" method="POST">
-				<button type="submit" name="editfilmid" value="${film.id}">Edit
-					Film</button>
-			</form>
+				<form action="editfilm" method="POST">
+					<button type="submit" name="editfilmid" value="${film.id}">Edit
+						Film</button>
+				</form>
 		</c:when>
 
 		<c:when test="${! empty films}">
@@ -88,13 +87,5 @@
 			<p>No film found</p>
 		</c:otherwise>
 	</c:choose>
-
-
-
-	<form action="home.do">
-		<br>
-		<button type="submit">HOME PAGE</button>
-	</form>
-
 </body>
 </html>

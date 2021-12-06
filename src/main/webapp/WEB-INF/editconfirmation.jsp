@@ -26,9 +26,5 @@
 	
 	<h1>You're film has been updated successfully!</h1>
 	<br>
-	<form action="home.do">
-
-		<button type="submit">HOME PAGE</button>
-	</form>
 </body>
 </html>

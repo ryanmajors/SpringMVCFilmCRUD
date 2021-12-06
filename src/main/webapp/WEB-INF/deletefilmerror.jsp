@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/theme/style.css">
-<title>Insert title here</title>
+<title>R&J Delete Error</title>
 </head>
 <body>
 	<nav>
@@ -26,11 +26,5 @@
 
 	<h1>You do not have the permission to delete this film</h1>
 	<br>
-
-	<form action="home.do">
-
-		<button type="submit">HOME PAGE</button>
-	</form>
-
 </body>
 </html>

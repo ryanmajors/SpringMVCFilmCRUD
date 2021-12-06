@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/theme/style.css">
-<title>Insert title here</title>
+<title>R&J Search</title>
 </head>
 <body>
 	<nav>
@@ -20,18 +20,24 @@
 						FILM</button>
 				</form>
 			</li>
+
 		</ul>
 	</nav>
+	<div class="searchcontainer">
+		<div class="filmbyidbox">
+			<form action="getfilmbyid.do" method="GET">
+				Search film by FilmId: <input type="text" name="filmid" min="1" />
+				<input type=submit value="Submit">
+			</form>
+		</div>
 
-	<form action="getfilmbyid.do" method="GET">
-		Search film by FilmId: <input type="text" name="filmid" min="1" />
-	</form>
-
-
-
-	<form action="getfilmbykeyword.do" method="GET">
-		Search film by keyword or phrase/pattern: <input type="text"
-			name="filmphrase" min="1" />
-	</form>
+		<div class="filmbykeywordbox">
+			<form action="getfilmbykeyword.do" method="GET">
+				Search film by keyword or phrase/pattern: <input type="text"
+					name="filmphrase" min="1" />
+					<input type=submit value="Submit">
+			</form>
+		</div>
+	</div>
 </body>
 </html>

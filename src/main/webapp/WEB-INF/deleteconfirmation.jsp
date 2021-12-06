@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/theme/style.css">
-<title>Insert title here</title>
+<title>R&J Film Deleted</title>
 </head>
 <body>
 	<nav>
@@ -25,9 +25,5 @@
 	
 	<h1>You're film has been deleted successfully!</h1>
 	<br>
-	<form action="home.do">
-
-		<button type="submit">HOME PAGE</button>
-	</form>
 </body>
 </html>

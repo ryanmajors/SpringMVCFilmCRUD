@@ -4,10 +4,7 @@
     box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  overflow: hidden;
-}
+
 
 body{
 
@@ -75,3 +72,13 @@ height: 75px;
 	color: white;
 	
 }
+
+div {
+	text-align: center;
+	padding: 30px;
+	margin: 20px;
+	
+	
+
+
+
