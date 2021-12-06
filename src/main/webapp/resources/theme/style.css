@@ -36,11 +36,6 @@ a:hover {
   justify-content: flex-end;
   align-items: center;
   list-style: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   overflow: auto;
 }
 
@@ -73,4 +68,10 @@ height: 75px;
 .add-film-button:hover {
   background-color: #32f1ea;
   color: black;
+}
+
+.filmbyid {
+	top: 200px;
+	color: white;
+	
 }

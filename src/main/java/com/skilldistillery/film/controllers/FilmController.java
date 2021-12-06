@@ -41,6 +41,10 @@ public class FilmController {
 		model.addAttribute("TEST", "Hello, Spring MVC!");
 		return "deletefilmerror";
 	}
+	@RequestMapping("search")
+	public String accessSearchPage() {
+		return "search";
+	}
 
 	@RequestMapping(path = "getfilmbyid.do", params = "filmid", method = RequestMethod.GET)
 	public ModelAndView getFilmById(int filmid) {
