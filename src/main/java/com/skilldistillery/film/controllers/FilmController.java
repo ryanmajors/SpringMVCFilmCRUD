@@ -74,6 +74,7 @@ public class FilmController {
 			film.setDescription(description);
 			film.setReleaseYear(releaseyear);
 			film.setLanguageId(languageid);
+			film.setLanguageName(filmDAO.findLanguageName(languageid));
 			film.setRentalDuration(rentalduration);
 			film.setRentalRate(Double.parseDouble(rentalrate));
 			film.setLength(length);
@@ -92,7 +93,7 @@ public class FilmController {
 //		film.setFeatures(features);
 
 		film = filmDAO.addNewFilm(film);
-		filmDAO.linkFilmandCategory(film.getId(), film.getCategory().getId());
+		film.setCategory(filmDAO.linkFilmandCategory(film.getId(), categoryid));
 		mv.addObject("film", film);
 		mv.setViewName("result");
 		return mv;
@@ -157,10 +158,10 @@ public class FilmController {
 		film = filmDAO.updateFilm(film);
 
 		if (film != null) {
-			mv.setViewName("result");
+			mv.setViewName("editconfirmation");
 			return mv;
 		} else {
-			mv.setViewName("");
+			mv.setViewName("editfilmerror");
 		}
 		mv.setViewName("home");
 		return mv;

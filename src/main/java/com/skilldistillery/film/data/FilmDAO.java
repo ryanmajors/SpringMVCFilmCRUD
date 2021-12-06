@@ -28,5 +28,7 @@ public interface FilmDAO {
 	
 	public Category findCategoryById(int categoryId) ;
 	
-	public int linkFilmandCategory( int filmId, int categoryId );
+	public Category linkFilmandCategory( int filmId, int categoryId );
+	
+	public String findLanguageName(int languageId);
 }
