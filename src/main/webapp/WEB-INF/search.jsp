@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/theme/style.css">
-<title>R&J Search</title>
+<link rel="stylesheet" href="resources/theme/style.css">
+<title>R&amp;J Search</title>
 </head>
 <body>
 <header>

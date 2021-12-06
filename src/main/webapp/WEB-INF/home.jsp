@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/resources/theme/style.css">
+<link rel="stylesheet" href="resources/theme/style.css">
 <meta charset="UTF-8">
 <title>R&J Films</title>
 </head>

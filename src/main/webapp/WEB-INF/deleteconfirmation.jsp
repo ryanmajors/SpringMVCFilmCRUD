@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/resources/theme/style.css">
+<link rel="stylesheet" href="resources/theme/style.css">
 <title>R&J Film Deleted</title>
 </head>
 <body>
