@@ -13,6 +13,7 @@ public class MvcFilmSiteApplication extends SpringBootServletInitializer {
 		return application.sources(MvcFilmSiteApplication.class);
 	}
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(MvcFilmSiteApplication.class, args);
 

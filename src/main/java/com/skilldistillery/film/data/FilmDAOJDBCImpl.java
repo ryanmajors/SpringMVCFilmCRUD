@@ -342,7 +342,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			conn.setAutoCommit(false); // Start transaction
 			PreparedStatement pstmt = conn.prepareStatement(sql2);
 			pstmt.setInt(1, film.getId());
-			pstmt.executeUpdate();
+			int uc1 = pstmt.executeUpdate();
 			conn.commit();
 			conn.setAutoCommit(false); // Start transaction
 			PreparedStatement st = conn.prepareStatement(sql);
@@ -350,7 +350,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 			System.out.println(st);
 			int uc = st.executeUpdate();
-			if (uc == 1) {
+			if (uc == 1 && uc1 ==1) {
 
 				System.out.println("Film title " + film.getTitle() + " Deleted from list ");
 			} else {
