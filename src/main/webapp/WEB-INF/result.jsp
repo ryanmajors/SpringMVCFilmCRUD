@@ -22,7 +22,11 @@
         <li>${film.length}</li>
         <li>${film.replacementCost}</li>
         <li>${film.rating}</li>
+        <c:choose>
+        <c:when test="${! empty film.category}">
         <li>${film.category}</li>
+        </c:when>
+        </c:choose>
         <li>${film.actors}</li>
       </ul>
       <form action="deletefilm.do">

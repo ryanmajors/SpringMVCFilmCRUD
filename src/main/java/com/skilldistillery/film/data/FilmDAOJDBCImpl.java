@@ -57,10 +57,12 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setRentalRate(actorResult.getDouble("film.rental_rate"));
 				film.setLength(actorResult.getInt("film.length"));
 				film.setReplacementCost(actorResult.getDouble("film.replacement_cost"));
-				film.setRating(actorResult.getString("film.rating"));
+				film.setRating(actorResult.getString("film.rating"));				
 				film.setCategory(findCategoryByFilmId(filmId));
+				System.err.println("Is this null= " + film.getCategory());
 //				film.setFeatures(actorResult.getString("film.special_features"));
 				film.setActors(findActorsByFilmId(filmId));
+				
 			}
 			actorResult.close();
 			preSt.close();
@@ -441,36 +443,33 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 	public Category findCategoryByFilmId(int filmId) {
 		Category category = new Category();
-		
+		System.err.println("inside findCategoryByFilmId");
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "SELECT category.id, category.name FROM category "
-					+ "JOIN film_category ON category.id = film_category.category_id "
-					+ "JOIN film ON film.id = film_category.film_id "
-					+ "WHERE film.id = ?";
+			String sql = "SELECT category.id, category.name FROM category LEFT JOIN film_category ON category.id = film_category.category_id LEFT JOIN film ON film.id = film_category.film_id WHERE film.id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, filmId);
 			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-
-				// Create the object
+			if(rs.next()) {// Create the object
 				// Here is our mapping of query columns to our object fields:
 				category.setId(rs.getInt("category.id"));
 				category.setName(rs.getString("category.name"));
 				System.err.println(category);
-				
-
-			}
+			
 			rs.close();
 			pstmt.close();
 			conn.close();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
 		}
+	
 		return category;
 	}
 	public Category findCategoryById(int categoryId) {
 			Category category = new Category();
+			System.err.println("inside findCategoryById");
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			String sql = "SELECT category.id, category.name FROM category WHERE id = ?";
