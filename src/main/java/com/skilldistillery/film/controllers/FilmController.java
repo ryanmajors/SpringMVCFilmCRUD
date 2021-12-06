@@ -62,7 +62,7 @@ public class FilmController {
 
 	@RequestMapping(path = "addnewfilm.do", method = RequestMethod.GET)
 	public ModelAndView addNewFilmToDB(String title, String description, int releaseyear, int languageid,
-			int rentalduration, String rentalrate, int length, String replacementcost, String rating, int category) {
+			int rentalduration, String rentalrate, int length, String replacementcost, String rating, int categoryid) {
 		ModelAndView mv = new ModelAndView();
 		Film film = new Film();
 		try {
@@ -75,7 +75,7 @@ public class FilmController {
 			film.setLength(length);
 			film.setReplacementCost(Double.parseDouble(replacementcost));
 			film.setRating(rating);
-			film.setCategory(filmDAO.findCategoryById(category));
+			film.setCategory(filmDAO.findCategoryById(categoryid));
 		} catch (NumberFormatException e) {
 			System.err.println("Potential invalid fields. Try again");
 			mv.setViewName("editfilmerror");
