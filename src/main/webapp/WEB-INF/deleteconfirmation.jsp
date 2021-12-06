@@ -8,6 +8,7 @@
 <title>R&J Film Deleted</title>
 </head>
 <body>
+<header>
 	<nav>
 		<ul class="nav-list">
 			<li class="nav-item"><a href="#"><img class="logo"
@@ -22,7 +23,7 @@
 			</li>
 		</ul>
 	</nav>
-	
+</header>
 	<h1>You're film has been deleted successfully!</h1>
 	<br>
 </body>

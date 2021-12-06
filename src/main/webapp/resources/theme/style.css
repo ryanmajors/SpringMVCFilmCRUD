@@ -22,7 +22,22 @@ a {
 a:hover {
   color: white;
 }
-
+header{
+	width:100%;
+min-height:3em;
+	
+}
+header{
+	position:fixed;
+	top:0;
+	
+}
+html:not([data-scroll='0']){
+	padding-top: 3em;
+}
+html:not([data-scroll='0']) header{
+	position: fixed;
+}
 
 .nav-list {
   background-color: black;

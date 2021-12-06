@@ -8,6 +8,7 @@
 <title>R&J Add Film</title>
 </head>
 <body>
+<header>
 	<nav>
 		<ul class="nav-list">
 			<li class="nav-item"><a href="#"><img class="logo"
@@ -23,7 +24,7 @@
 
 		</ul>
 	</nav>
-
+</header>
 	<form action="addnewfilm.do" method="GET">
 		Fill out the form to edit the following film attributes: <br>Title
 		<input type="text" class="data" name="title" required="required" /> <br>Description

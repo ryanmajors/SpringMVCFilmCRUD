@@ -469,7 +469,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				pstmt.close();
 				conn.close();
 			} else {
-				conn.rollback();
+			
 				category.setId(filmId);
 				category.setName("Action");
 			}

@@ -8,6 +8,7 @@
 <title>R&J Films</title>
 </head>
 <body>
+<header>
 	<nav>
 		<ul class="nav-list">
 			<li class="nav-item"><a href="#"><img class="logo"
@@ -23,6 +24,7 @@
 
 		</ul>
 	</nav>
+</header>
 	<div class="about-me">
 	<h1>About This Site</h1>
 	<br><br><br>

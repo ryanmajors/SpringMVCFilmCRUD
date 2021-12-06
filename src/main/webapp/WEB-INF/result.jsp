@@ -10,6 +10,7 @@
 <title>R&J Results</title>
 </head>
 <body>
+<header>
 	<nav>
 	<ul class="nav-list">
 		<li class="nav-item"><a href="#"><img class="logo"
@@ -25,6 +26,7 @@
 
 	</ul>
 	</nav>
+</header>
 	<c:choose>
 		<c:when test="${! empty film}">
 				<ul>

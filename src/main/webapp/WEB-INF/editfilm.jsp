@@ -8,6 +8,7 @@
 <title>R&J Edit Film</title>
 </head>
 <body>
+<header>
 	<nav>
 		<ul class="nav-list">
 			<li class="nav-item"><a href="#"><img class="logo"
@@ -23,7 +24,7 @@
 	
 		</ul>
 	</nav>
-	
+</header>
 	<form action="editfilm.do" method="GET"> 
 	Create Film by filling out all fields:
 	<br>Title

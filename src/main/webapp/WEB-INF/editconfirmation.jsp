@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<header>
 	<nav>
 		<ul class="nav-list">
 			<li class="nav-item"><a href="#"><img class="logo"
@@ -23,7 +24,7 @@
 
 		</ul>
 	</nav>
-	
+</header>
 	<h1>You're film has been updated successfully!</h1>
 	<br>
 </body>

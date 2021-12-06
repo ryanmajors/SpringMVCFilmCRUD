@@ -8,6 +8,7 @@
 <title>R&J Search</title>
 </head>
 <body>
+<header>
 	<nav>
 		<ul class="nav-list">
 			<li class="nav-item"><a href="#"><img class="logo"
@@ -23,6 +24,7 @@
 
 		</ul>
 	</nav>
+</header>
 	<div class="searchcontainer">
 		<div class="filmbyidbox">
 			<form action="getfilmbyid.do" method="GET">
