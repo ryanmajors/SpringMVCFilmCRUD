@@ -270,7 +270,6 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	public Film addNewFilm(Film newFilm) {
 
 		String sql = " INSERT INTO film (title, description, release_year, language_id , rental_duration, rental_rate, length, replacement_cost, rating ) VALUES(?,?,?,?,?,?,?,?,?)";
-
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
@@ -285,6 +284,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			st.setInt(7, newFilm.getLength());
 			st.setDouble(8, newFilm.getReplacementCost());
 			st.setString(9, newFilm.getRating());
+			
 //			st.setString(10, newFilm.getFeatures());
 			System.out.println(st);
 			int uc = st.executeUpdate();
