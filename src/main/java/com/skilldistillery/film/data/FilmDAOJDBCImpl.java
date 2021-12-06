@@ -57,12 +57,12 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setRentalRate(actorResult.getDouble("film.rental_rate"));
 				film.setLength(actorResult.getInt("film.length"));
 				film.setReplacementCost(actorResult.getDouble("film.replacement_cost"));
-				film.setRating(actorResult.getString("film.rating"));				
+				film.setRating(actorResult.getString("film.rating"));
 				film.setCategory(findCategoryByFilmId(filmId));
 				System.err.println("Is this null= " + film.getCategory());
 //				film.setFeatures(actorResult.getString("film.special_features"));
 				film.setActors(findActorsByFilmId(filmId));
-				
+
 			}
 			actorResult.close();
 			preSt.close();
@@ -270,7 +270,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	public Film addNewFilm(Film newFilm) {
 
 		String sql = " INSERT INTO film (title, description, release_year, language_id , rental_duration, rental_rate, length, replacement_cost, rating ) VALUES(?,?,?,?,?,?,?,?,?)";
-
+		String sql2 = " INSERT INTO film_category SET film_id=?, catagory_id=?";
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
@@ -285,6 +285,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			st.setInt(7, newFilm.getLength());
 			st.setDouble(8, newFilm.getReplacementCost());
 			st.setString(9, newFilm.getRating());
+
 //			st.setString(10, newFilm.getFeatures());
 			System.out.println(st);
 			int uc = st.executeUpdate();
@@ -308,7 +309,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			conn.commit(); // Commit the transaction
 			st.close();
 			keys.close();
-			
+
 		} catch (SQLException e) {
 			// Something went wrong.
 			System.err.println("Error during inserts.");
@@ -336,14 +337,19 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	public Film deleteFilm(Film film) {
 
 		String sql = "DELETE FROM film WHERE id = ?";
-
+		String sql2 = "DELETE FROM film_category where film_id=?";
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
 			conn.setAutoCommit(false); // Start transaction
+			PreparedStatement pstmt = conn.prepareStatement(sql2);
+			pstmt.setInt(1, film.getId());
+			pstmt.executeUpdate();
+			conn.commit();
+			conn.setAutoCommit(false); // Start transaction
 			PreparedStatement st = conn.prepareStatement(sql);
 			st.setInt(1, film.getId());
-
+			
 			System.out.println(st);
 			int uc = st.executeUpdate();
 			if (uc == 1) {
@@ -384,8 +390,8 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 	@Override
 	public Film updateFilm(Film film) {
-		String sql = " UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=?,  WHERE id = ?";
-		
+		String sql = " UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=?  WHERE id = ?";
+//		String sql2 = " UPDATE film_category SET category_id =? WHERE category_film.film_id =? ";
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
@@ -402,6 +408,10 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			st.setString(9, film.getRating());
 			st.setInt(10, film.getId());
 
+//			PreparedStatement st2 = conn.prepareStatement(sql);
+//			st2.setInt(1, film.getCategory().getId());
+//			st2.setInt(2, film.getId());
+//			st2.executeUpdate();
 			System.out.println(st);
 			int uc = st.executeUpdate();
 			if (uc == 1) {
@@ -414,7 +424,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				conn.close();
 				return film;
 			}
-			//String sql2 = "UPDATE    //Working on this spot do no touch
+			// String sql2 = "UPDATE //Working on this spot do no touch
 
 			// If we made it this far, no exception occurred.
 			conn.commit(); // Commit the transaction
@@ -443,83 +453,123 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 	public Category findCategoryByFilmId(int filmId) {
 		Category category = new Category();
-		System.err.println("inside findCategoryByFilmId");
+		System.err.println("inside findCategoryByFilmId " + filmId);
+		Connection conn = null;
+
 		try {
-			Connection conn = DriverManager.getConnection(url, user, pass);
+			conn = DriverManager.getConnection(url, user, pass);
 			String sql = "SELECT category.id, category.name FROM category LEFT JOIN film_category ON category.id = film_category.category_id LEFT JOIN film ON film.id = film_category.film_id WHERE film.id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, filmId);
 			ResultSet rs = pstmt.executeQuery();
-			if(rs.next()) {// Create the object
+			if (rs.next()) {// Create the object
 				// Here is our mapping of query columns to our object fields:
 				category.setId(rs.getInt("category.id"));
 				category.setName(rs.getString("category.name"));
 				System.err.println(category);
-			
-			rs.close();
-			pstmt.close();
-			conn.close();
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} else {
+				conn.rollback();
+				category.setId(filmId);
+				category.setName("Action");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
+
 		}
-	
+
 		return category;
 	}
+
 	public Category findCategoryById(int categoryId) {
-			Category category = new Category();
-			System.err.println("inside findCategoryById");
+		Category category = new Category();
+		System.err.println("inside findCategoryById " + categoryId);
+		Connection conn = null;
 		try {
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "SELECT category.id, category.name FROM category WHERE id = ?";
+			conn = DriverManager.getConnection(url, user, pass);
+			String sql = "SELECT id, name FROM category WHERE id = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, categoryId);
 			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				// Create the object
 				// Here is our mapping of query columns to our object fields:
 				category.setId(rs.getInt("category.id"));
 				category.setName(rs.getString("category.name"));
+
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} else {
+				conn.rollback();
+				rs.close();
+				pstmt.close();
+				conn.close();
+
 			}
-			rs.close();
-			pstmt.close();
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return category;
-		
+
 	}
-	
-	public int linkFilmandCategory(int filmId, int categoryId ) {
+
+	public Category linkFilmandCategory(int filmId, int categoryId) {
+		Category category = new Category();
+		Connection conn = null;
 		try {
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "INSERT INTO film_category SET film_id=?, catagory_id=?";
+			conn = DriverManager.getConnection(url, user, pass);
+			conn.setAutoCommit(false); // Start transaction
+			String sql = "INSERT INTO film_category SET film_id=?, category_id=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, filmId);
 			pstmt.setInt(2, categoryId);
-			
-			
+
 			int rs = pstmt.executeUpdate();
 			if (rs == 1) {
+				category = findCategoryById(categoryId);
+				conn.commit();
 				pstmt.close();
 				conn.close();
-				return 1; // 1 is success
-				
+				return category; // 1 is success
+
 			} else {
 				System.err.println("Error, error you or I may have done something wrong.");
 				conn.rollback();
 				pstmt.close();
 				conn.close();
-				return 0; //zero is failed
-			
-			} 
-			
-			} catch (SQLException e) {
-			e.printStackTrace();
+				return category; // zero is failed
+
 			}
-		return 0; // failed bc it didnt make it in to anything,...
-		
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return category; // failed bc it didnt make it in to anything,...
+
+	}
+
+	public String findLanguageName(int languageId) {
+		String languageName = null;;
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			String sql = "SELECT name FROM language WHERE id=?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, languageId);
+			ResultSet rs = pstmt.executeQuery();
+			languageName = rs.getString("name");
+			System.err.println(languageName);
+			pstmt.close();
+			conn.close();
+			return languageName; // 1 is success
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return languageName; // failed bc it didnt make it in to anything,...
+
 	}
 }
