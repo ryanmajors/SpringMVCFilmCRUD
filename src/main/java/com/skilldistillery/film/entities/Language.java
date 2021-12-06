@@ -1,13 +1,13 @@
 package com.skilldistillery.film.entities;
 
-
 public class Language {
-	
+
 	private int id;
-	
+
 	private String name;
-	
-	Language() {}
+
+	Language() {
+	}
 
 	public int getId() {
 		return id;
@@ -30,5 +30,4 @@ public class Language {
 		return "Language id: " + id + "\nName: " + name;
 	}
 
-	
 }

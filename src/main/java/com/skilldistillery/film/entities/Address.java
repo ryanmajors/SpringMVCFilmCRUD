@@ -1,23 +1,23 @@
 package com.skilldistillery.film.entities;
 
-
 public class Address {
 
 	private int id;
-	
+
 	private String street;
-	
+
 	private String street2;
-	
+
 	private String state;
-	
+
 	private String city;
-	
+
 	private String postalCode;
-	
+
 	private String phone;
 
-	Address() {}
+	Address() {
+	}
 
 	public int getId() {
 		return id;

@@ -41,6 +41,7 @@ public class FilmController {
 		model.addAttribute("TEST", "Hello, Spring MVC!");
 		return "deletefilmerror";
 	}
+
 	@RequestMapping("search")
 	public String accessSearchPage() {
 		return "search";

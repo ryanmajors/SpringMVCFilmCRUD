@@ -1,17 +1,17 @@
 package com.skilldistillery.film.entities;
 
-
 public class Staff {
-	
+
 	private int id;
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	private String email;
 
-	Staff() {}
+	Staff() {
+	}
 
 	public int getId() {
 		return id;

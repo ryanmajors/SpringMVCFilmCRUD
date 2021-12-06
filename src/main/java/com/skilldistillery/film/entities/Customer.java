@@ -2,20 +2,20 @@ package com.skilldistillery.film.entities;
 
 import java.time.LocalDateTime;
 
-
 public class Customer {
 
 	private int id;
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	private String email;
-	
+
 	private LocalDateTime createDate;
 
-	Customer() {}
+	Customer() {
+	}
 
 	public int getId() {
 		return id;
@@ -48,7 +48,7 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
@@ -59,7 +59,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer id: " + id + "\nFirst Name: " + firstName + "\nLast Name: " + lastName + "\nEmail: " + email + "\nCreated Date: " + createDate;
+		return "Customer id: " + id + "\nFirst Name: " + firstName + "\nLast Name: " + lastName + "\nEmail: " + email
+				+ "\nCreated Date: " + createDate;
 	}
 
 }

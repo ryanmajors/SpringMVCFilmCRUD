@@ -61,7 +61,6 @@ public class Film {
 		this.actors = actors;
 	}
 
-
 	public Category getCategory() {
 		return category;
 	}
@@ -171,10 +170,8 @@ public class Film {
 		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
 				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
 				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialFeatures=" + specialFeatures + ", languageName=" + languageName + ", categories="
-				+ category + ", actors=" + actors + "]";
+				+ ", specialFeatures=" + specialFeatures + ", languageName=" + languageName + ", categories=" + category
+				+ ", actors=" + actors + "]";
 	}
-
-
 
 }

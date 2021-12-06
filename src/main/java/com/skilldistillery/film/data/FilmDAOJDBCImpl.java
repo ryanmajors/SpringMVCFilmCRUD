@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Category;
 import com.skilldistillery.film.entities.Film;
-import com.skilldistillery.film.entities.Rating;
 
 @Service
 public class FilmDAOJDBCImpl implements FilmDAO {
@@ -348,7 +347,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			conn.setAutoCommit(false); // Start transaction
 			PreparedStatement st = conn.prepareStatement(sql);
 			st.setInt(1, film.getId());
-			
+
 			System.out.println(st);
 			int uc = st.executeUpdate();
 			if (uc == 1) {
@@ -551,7 +550,8 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	}
 
 	public String findLanguageName(int languageId) {
-		String languageName = null;;
+		String languageName = null;
+		;
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(url, user, pass);

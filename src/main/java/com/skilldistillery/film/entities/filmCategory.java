@@ -1,6 +1,6 @@
 package com.skilldistillery.film.entities;
 
-public class filmCategory {
+public class FilmCategory {
 	
 	private int filmId;
 	

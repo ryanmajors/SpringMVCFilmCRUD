@@ -4,12 +4,13 @@ import java.time.LocalDateTime;
 
 public class Rental {
 	private int id;
-	
+
 	private LocalDateTime rentalDate;
-	
+
 	private LocalDateTime returnDate;
-	
-	Rental() {}
+
+	Rental() {
+	}
 
 	public int getId() {
 		return id;
@@ -39,6 +40,5 @@ public class Rental {
 	public String toString() {
 		return "Rental id: " + id + "\nRentalDate: " + rentalDate + "\nReturnDate: " + returnDate;
 	}
-	
-	
+
 }
