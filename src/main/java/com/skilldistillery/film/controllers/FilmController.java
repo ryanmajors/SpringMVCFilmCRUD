@@ -88,6 +88,7 @@ public class FilmController {
 //		film.setFeatures(features);
 
 		film = filmDAO.addNewFilm(film);
+		filmDAO.linkFilmandCategory(film.getId(), film.getCategory().getId());
 		mv.addObject("film", film);
 		mv.setViewName("result");
 		return mv;

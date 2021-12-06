@@ -493,15 +493,14 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 		
 	}
 	
-	public int linkFilmandCategory(int newFilmId, int newCategoryId, int filmId, int categoryId ) {
+	public int linkFilmandCategory(int filmId, int categoryId ) {
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String sql = "INSERT INTO film_category SET film_id=?, catagory_id=? WHERE category_id = ? && film_id = ?";
+			String sql = "INSERT INTO film_category SET film_id=?, catagory_id=?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, newFilmId);
-			pstmt.setInt(2, newCategoryId);
-			pstmt.setInt(3, newCategoryId);
-			pstmt.setInt(4, newCategoryId);
+			pstmt.setInt(1, filmId);
+			pstmt.setInt(2, categoryId);
+			
 			
 			int rs = pstmt.executeUpdate();
 			if (rs == 1) {
